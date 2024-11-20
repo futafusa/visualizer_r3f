@@ -3,14 +3,14 @@ import { useControls } from "leva";
 
 export default function Light(props) {
   const { sunPosition } = useControls('sky', {
-    sunPosition: { value: [1, 2, 3] }
+    sunPosition: { value: [1, 5, 1] }
   });
 
   return <>
    <directionalLight
       castShadow
       position={ sunPosition }
-      intensity={ 1.5 + props.intensity }
+      intensity={ 1.0 + props.intensity*2 }
       shadow-mapSize={ [ 1024, 1024 ] }
       shadow-camera-near={ 1 }
       shadow-camera-far={ 10 }
@@ -19,7 +19,7 @@ export default function Light(props) {
       shadow-camera-bottom={ - 10 }
       shadow-camera-left={ - 10 }
     />
-    <ambientLight intensity={ props.intensity } />
+    <ambientLight intensity={ props.intensity*2 } />
     {/* <Sky sunPosition={ sunPosition } /> */}
 
     {/* <Environment background preset="city">

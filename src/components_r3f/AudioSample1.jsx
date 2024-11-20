@@ -1,10 +1,9 @@
 import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { ContactShadows, OrbitControls } from '@react-three/drei';
+import { ContactShadows, Grid, OrbitControls } from '@react-three/drei';
 import { useControls } from 'leva';
 import { Perf } from 'r3f-perf';
 import Light from '../Light';
-import { useEffect } from 'react';
 
 export default function AudioSample1() {
   // setting leva
@@ -25,7 +24,7 @@ export default function AudioSample1() {
     const audioSourceNode = audioContext.current.createMediaStreamSource(streamSource);
 
     const analyserNode = audioContext.current.createAnalyser();
-    analyserNode.fftSize = 32;
+    analyserNode.fftSize = 256;
     audioSourceNode.connect(analyserNode);
 
     setAnalyser(analyserNode);
@@ -67,24 +66,26 @@ export default function AudioSample1() {
     <Light intensity={audioVolume} />
 
     <ContactShadows
-      position={ [0, -0.99, 0 ]}
-      scale={ 10 }
-      color={ '#000000' }
-      opacity={ 0.5 }
-      blur={ 2 }
+      position={[0, -0.99, 0 ]}
+      scale={10}
+      color={'#000000'}
+      opacity={0.5}
+      blur={2}
     />
 
     {/* <color args={ ['#FFFFFF' ]} attach="background" /> */}
   
-    <mesh ref={ refCube } castShadow position-x={ 0 } scale={1 + audioVolume} onClick={clickObject}>
+    <mesh ref={refCube} castShadow position-x={ 0 } scale={1 + audioVolume} onClick={clickObject}>
       <boxGeometry />
-      <meshStandardMaterial color="mediumpurple" />
+      <meshStandardMaterial color="white" />
     </mesh>
 
-    <mesh receiveShadow position-y={ - 1 } rotation-x={ - Math.PI * 0.5 } scale={ 10 }>
+    {/* <mesh receiveShadow position-y={ - 1 } rotation-x={ - Math.PI * 0.5 } scale={ 10 }>
       <planeGeometry />
       <meshStandardMaterial color="greenyellow" />
-    </mesh>
+    </mesh> */}
+
+    <Grid position={[0, -1, 0]}  infiniteGrid={true} fadeDistance={20} />
 
   </>
 }
