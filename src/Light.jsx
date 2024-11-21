@@ -10,7 +10,7 @@ export default function Light(props) {
    <directionalLight
       castShadow
       position={ sunPosition }
-      intensity={ 1.0 + props.intensity*2 }
+      intensity={ 1.0 + Math.pow(props.intensity, 10)*2 }
       shadow-mapSize={ [ 1024, 1024 ] }
       shadow-camera-near={ 1 }
       shadow-camera-far={ 10 }
