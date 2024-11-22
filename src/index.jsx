@@ -5,6 +5,7 @@ import { Leva } from 'leva';
 import AudioSpectrum from './components/AudioSpectrum.jsx';
 import AudioLevelMeter from './components/AudioLevelMeter.jsx';
 import AudioSample1 from './components_r3f/AudioSample1.jsx';
+import AudioSample2 from './components_r3f/AudioSample2.jsx';
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
@@ -19,7 +20,7 @@ root.render(
         position: [ 4, 2, 6 ]
       } }
     >
-      <AudioSample1 />
+      <AudioSample2 />
     </Canvas>
     {/* <AudioSpectrum /> */}
     {/* <AudioLevelMeter /> */}

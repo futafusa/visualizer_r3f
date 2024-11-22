@@ -15,7 +15,7 @@ export default function AudioSample1() {
   const refCube = useRef();
   const refGrid = useRef();
   const refGroup = useRef();
-  const FFT_SIZE = 64;
+  const FFT_SIZE = 64; // min 16
 
   // for audio
   const audioContext = useRef(null);
@@ -49,6 +49,8 @@ export default function AudioSample1() {
       return max > currentValue ? max : currentValue;
     })
     const rePeak = peak / 255;
+    // const rePeak = dataArray[0] / 255;
+
     setAudioVolume(rePeak);
 
     // update mesh audio object
@@ -87,7 +89,7 @@ export default function AudioSample1() {
 
     {/* <color args={ ['#FFFFFF' ]} attach="background" /> */}
 
-    <mesh ref={refCube} castShadow position-y={2} scale={0.5 + audioVolume} onClick={clickStartAudio}>
+    <mesh ref={refCube} castShadow position-y={2} scale={0.5 + Math.pow(audioVolume, 5)} onClick={clickStartAudio}>
       <boxGeometry />
       <meshStandardMaterial color={[0.5, 0.5, 0.5]} />
     </mesh>

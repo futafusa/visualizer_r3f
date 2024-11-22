@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react'
+import glsl from 'vite-plugin-glsl'
 
 const isCodeSandbox = 'SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env
 
@@ -6,7 +7,8 @@ export default {
   plugins: [
     react({
       jsxImportSource: '@emotion/react',
-    })
+    }),
+    glsl() // Handle shader files
   ],
   root: 'src/',
   publicDir: "../public/",
